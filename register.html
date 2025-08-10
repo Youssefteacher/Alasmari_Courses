@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نموذج التسجيل - Alasmari Courses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
+    .container {
+      max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px;
+      margin-top: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, select, button {
+      width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      background: #25D366; color: white; border: none; margin-top: 20px;
+      cursor: pointer; font-size: 16px;
+    }
+    button:hover { background: #1ebe5d; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>نموذج التسجيل</h2>
+  <form id="whatsappForm">
+    <label for="name">الاسم الثلاثي</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="age">العمر</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="course">الدورة المطلوبة</label>
+    <select id="course" name="course" required>
+      <option value="">اختر الدورة</option>
+      <option>دورة تأسيسية من الصفر من الحروف</option>
+      <option>دورة مستوى متوسط من تكوين الجمل وأساسيات المحادثات</option>
+      <option>دورة مستوى متقدم تطوير لجميع مهارات اللغة الإنجليزية قراءة وكتابة واستماع وتحدث ومحادثات</option>
+      <option>دورة أ. ريم الأسمري للمحادثة والقراءة للأطفال من ٨ سنوات حتى ١٢ سنة</option>
+    </select>
+
+    <button type="submit">إرسال عبر واتساب</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("whatsappForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  
+  var name = document.getElementById("name").value;
+  var age = document.getElementById("age").value;
+  var course = document.getElementById("course").value;
+  
+  var message = "طلب تسجيل جديد:%0A" +
+                "الاسم: " + name + "%0A" +
+                "العمر: " + age + "%0A" +
+                "الدورة المطلوبة: " + course;
+  
+  var phone = "00966553231285"; 
+  var url = "https://wa.me/" + phone + "?text=" + message;
+  
+  window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>
