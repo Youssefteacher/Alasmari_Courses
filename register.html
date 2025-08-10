@@ -54,17 +54,17 @@ document.getElementById("whatsappForm").addEventListener("submit", function(e){
   var age = document.getElementById("age").value;
   var course = document.getElementById("course").value;
   
-  var message = "طلب تسجيل جديد:%0A" +
-                "الاسم: " + name + "%0A" +
-                "العمر: " + age + "%0A" +
-                "الدورة المطلوبة: " + course;
+  // ترميز النصوص
+  var message = encodeURIComponent(
+    "طلب تسجيل جديد:\n" +
+    "الاسم: " + name + "\n" +
+    "العمر: " + age + "\n" +
+    "الدورة المطلوبة: " + course
+  );
   
-  var phone = "00966553231285"; 
+  var phone = "966553231285"; // بدون 00 أو +
   var url = "https://wa.me/" + phone + "?text=" + message;
   
   window.open(url, "_blank");
 });
 </script>
-
-</body>
-</html>
