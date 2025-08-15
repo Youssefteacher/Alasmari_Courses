@@ -78,7 +78,7 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     var name = document.getElementById("name").value;
     var age = document.getElementById("age").value;
     var course = document.getElementById("course").value;
-var phone = "966553231285";
+    var phone = "966553231285"; // ✅ رقم واتساب بصيغة صحيحة
     var message = `السلام عليكم،\nاسمي: ${name}\nعمري: ${age}\nأرغب بالتسجيل في:\n${course}`;
     var url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
