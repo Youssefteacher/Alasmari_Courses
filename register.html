@@ -75,13 +75,27 @@
 <script>
 document.getElementById("registerForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    var name = document.getElementById("name").value;
-    var age = document.getElementById("age").value;
-    var course = document.getElementById("course").value;
-    var phone = "966553231285"; // ✅ رقم واتساب بصيغة صحيحة
-    var message = `السلام عليكم،\nاسمي: ${name}\nعمري: ${age}\nأرغب بالتسجيل في:\n${course}`;
-    var url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+
+    var name = document.getElementById("name").value.trim();
+    var age = document.getElementById("age").value.trim();
+    var course = document.getElementById("course").value.trim();
+
+    // ✅ رقم واتساب بصيغة صحيحة (رمز الدولة بدون + وبدون أصفار)
+    var phone = "966553231285";
+
+    var message = "السلام عليكم،\n"
+                + "اسمي: " + name + "\n"
+                + "عمري: " + age + "\n"
+                + "أرغب بالتسجيل في:\n" + course;
+
+    // رابط متوافق مع معظم المتصفحات والأجهزة
+    var url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + encodeURIComponent(message);
+
+    // محاولة فتح في تبويب جديد، وإن منع المتصفح النوافذ—نحوّل نفس الصفحة للرابط
+    var win = window.open(url, "_blank");
+    if (!win) {
+        window.location.href = url;
+    }
 });
 </script>
 
