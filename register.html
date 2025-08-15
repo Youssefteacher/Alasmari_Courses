@@ -1,110 +1,89 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الأعضاء</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            direction: rtl;
-            text-align: center;
-            padding: 20px;
-        }
-        .form-container {
-            max-width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>التسجيل في الدورات</title>
+<style>
+    body {
+        font-family: Tahoma, Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    button {
+        background-color: #25D366;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #1ebd5a;
+    }
+</style>
 </head>
 <body>
 
-    <h2>تسجيل الأعضاء</h2>
-    <div class="form-container">
-        <form id="registerForm">
-            <input type="text" id="name" placeholder="الاسم الكامل" required>
-            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-            <input type="tel" id="phone" placeholder="رقم الجوال" required>
-            <select id="course" required>
-                <option value="">اختر الدورة</option>
-                <option>تأسيس من الحروف (للأولاد والرجال)</option>
-                <option>مستوى متوسط (للأولاد والرجال)</option>
-                <option>تأسيس للأطفال</option>
-                <option>متوسط ومتقدم للأطفال</option>
-                <option>من الصفر إلى المتقدم (للبنات والنساء)</option>
-            </select>
-            <button type="submit">تسجيل</button>
-        </form>
-    </div>
+<div class="container">
+    <h2>التسجيل في الدورات</h2>
+    <form id="registerForm">
+        <label>الاسم الكامل</label>
+        <input type="text" id="name" required>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"></script>
+        <label>العمر</label>
+        <input type="number" id="age" required>
 
-    <script>
-        // ⚠️ ضع بيانات Firebase الحقيقية هنا
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+        <label>اختر الدورة</label>
+        <select id="course" required>
+            <option value="">-- اختر الدورة --</option>
+            <option>دورات تأسيس من الحروف من الصفر للأولاد والرجال من عمر 14سنة وحتى 65سنة مع المدرب محمد الأسمري</option>
+            <option>دورات مستوى متوسط من تكوين الجمل وأساسيات المحادثات للأولاد والرجال من عمر 14سنة وحتى 65سنة مع المدرب يوسف الأسمري</option>
+            <option>دورات تأسيس من الحروف للأطفال من عمر 5 سنوات وحتى 13سنة مع المدربة رحاب الأسمري</option>
+            <option>دورات مستويات متوسط ومتقدم للأطفال من عمر 7 سنوات وحتى 13سنة مع المدربة ريم الأسمري</option>
+            <option>دورات مستويات من الصفر وحتى المستوى المتقدم للبنات والنساء فقط من عمر 14سنة وحتى 65 سنة مع المدربة ريم الأسمري</option>
+        </select>
 
-        // تشغيل Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        <button type="submit">إرسال عبر الواتساب</button>
+    </form>
+</div>
 
-        // إرسال البيانات عند التسجيل
-        document.getElementById("registerForm").addEventListener("submit", function(e){
-            e.preventDefault();
-
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const course = document.getElementById("course").value;
-
-            const newRef = database.ref("members").push();
-            newRef.set({
-                name: name,
-                email: email,
-                phone: phone,
-                course: course,
-                date: new Date().toLocaleString()
-            })
-            .then(() => {
-                alert("✅ تم التسجيل بنجاح!");
-                document.getElementById("registerForm").reset();
-            })
-            .catch(error => {
-                alert("❌ حدث خطأ: " + error);
-            });
-        });
-    </script>
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var name = document.getElementById("name").value;
+    var age = document.getElementById("age").value;
+    var course = document.getElementById("course").value;
+    var phone = "00966553231285";
+    var message = `السلام عليكم،\nاسمي: ${name}\nعمري: ${age}\nأرغب بالتسجيل في:\n${course}`;
+    var url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+});
+</script>
 
 </body>
 </html>
